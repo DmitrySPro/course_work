@@ -1,0 +1,39 @@
+{% extends 'todo/main.html' %}
+{% block content %}
+
+<div class="header-bar">
+    <h1>Register</h1>
+</div>
+
+<div class="card-body">
+    <form method="POST">
+        {% csrf_token %}
+        <!-- {{ form.as_p }} -->
+        {% for field in form %}
+        <tr>
+            <td>{{ field.label_tag }}</td>
+            <td>
+                {% if field.errors %}
+                    {% for error in field.errors %}
+                    <p style="color: red;">{{ error|striptags }}</p>
+                    {% endfor %}
+                {% endif %}
+
+                {{ field }}
+                {% if field.help_text %}
+                <p class="helptext">{{ field.help_text }}</p>
+                
+                {% endif %}
+            </td>
+        </tr>
+        {% endfor %}
+
+        <input style="margin-top:10px ;" class="button" type="submit" value="Register">
+    </form>
+    <p>Already have an account? <a href="{% url 'login' %}">Login</a></p>
+</div>
+
+
+
+
+{% endblock content %}
