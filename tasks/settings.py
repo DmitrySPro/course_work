@@ -128,3 +128,51 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'formatters': {
+        'console': {
+            'format': '%(name)-12s %(levelname)-8s %(message)s'
+        },
+        'file': {
+            'format': '%(asctime)s %(name)-12s %(levelname)-8s %(message)s'
+        }
+    },
+    'handlers': {
+        'console': {
+            'class': 'logging.StreamHandler',
+            'formatter': 'console'
+        },
+        'file': {
+            'level': 'WARNING',
+            'class': 'logging.FileHandler',
+            'formatter': 'file',
+            'filename': 'debug.log'
+        }
+    },
+    'loggers': {
+        'django.request': {
+            'level': 'DEBUG',
+            'handlers': ['console', 'file']
+        },
+        'django.server': {
+            'level': 'DEBUG',
+            'handlers': ['console', 'file']
+        },
+        'django.template': {
+            'level': 'DEBUG',
+            'handlers': ['console', 'file']
+        },
+        'django.db.backends': {
+            'level': 'DEBUG',
+            'handlers': ['console', 'file']
+        },
+        'django.security.*': {
+            'level': 'DEBUG',
+            'handlers': ['console', 'file']
+        }
+    }
+}
