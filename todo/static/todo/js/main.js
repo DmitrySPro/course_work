@@ -1,6 +1,7 @@
 var taskList = document.getElementById("tasklist");
 var reorderForm = document.getElementById("reorderForm");
 var positionInput = document.getElementById("positionInput");
+var counter = document.getElementById("counter");
 
 let sortable = Sortable.create(taskList, {
 	handle: '.handle',
@@ -54,6 +55,9 @@ function complete_toggle(eid){
 				data: JSON.stringify({"complete":true}),
 				success: function(data){
 				$("#"+eid).attr('class', "task-complete-icon");
+				var number = counter.innerHTML;
+				number--;
+				counter.innerHTML = number; 
 				}
 				});
 		} 
@@ -69,6 +73,9 @@ function complete_toggle(eid){
 				data: JSON.stringify({"complete":false}),
 				success: function(data){
 				$("#"+eid).attr('class', "task-incomplete-icon");
+				var number = counter.innerHTML;
+				number++;
+				counter.innerHTML = number; 
 				}
 				});
 		}

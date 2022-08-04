@@ -6,7 +6,7 @@
 <div class="header-bar">
     <div>
         <h1>Привет {{request.user|title}}</h1>
-        <h3 style="margin:0">У вас <i>{{count}}</i> незавершенных задач</h3>
+        <h3 style="margin:0">У вас <i id="counter">{{count}}</i> незавершенных задач</h3>
     </div>
 
     {% if request.user.is_authenticated %}
